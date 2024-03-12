@@ -70,3 +70,25 @@ for (let i = 0, len = revealDelayElements.length; i < len; i++) {
 
 window.addEventListener("scroll", reveal);
 window.addEventListener("load", reveal);
+
+/**
+ * SMOOTH SCROLL FOR NAV LINKS
+ */
+const navLinks = document.querySelectorAll('.navbar-link[href^="#"]'); // Select nav links
+
+const smoothScroll = function (event) {
+  const targetId = event.currentTarget.getAttribute('href');
+  const targetSection = document.querySelector(targetId);
+
+  if (targetSection) {
+    event.preventDefault(); // Prevent default anchor click behavior
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+
+    // If navbar is active (e.g., on mobile), close it after clicking
+    if (navbar.classList.contains('active')) {
+      toggleNavbar();
+    }
+  }
+}
+
+addEventOnElements(navLinks, 'click', smoothScroll);

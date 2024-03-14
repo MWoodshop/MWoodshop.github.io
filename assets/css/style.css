@@ -504,6 +504,25 @@ body.nav-active { overflow: hidden; }
 .project-card .btn-text:is(:hover, :focus-visible) { gap: 10px; }
 
 
+/*-----------------------------------*\
+  #CARD-LANGUAGE
+\*-----------------------------------*/
+
+.card-language {
+  display: flex;
+  gap: 20px; /* Adjust space between icons */
+}
+
+.language-icon {
+  width: 40px;
+  height: 40px;/
+  transition: var(--transition-1);
+}
+
+.language-icon:hover {
+  transform: scale(1.1); /* Icon grow effect on hover */
+}
+
 
 
 

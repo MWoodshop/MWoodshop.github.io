@@ -92,3 +92,40 @@ const smoothScroll = function (event) {
 }
 
 addEventOnElements(navLinks, 'click', smoothScroll);
+
+/**
+ * Formspree Form Submission with AJAX
+ */
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the form element
+  var form = document.getElementById("contactForm");
+
+  // Add an event listener for form submission
+  form.addEventListener("submit", function(e) {
+      e.preventDefault(); // Prevent the default form submission
+
+      var formData = new FormData(form);
+
+      // Send the form data to Formspree using Fetch API
+      fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+              'Accept': 'application/json' // Expect a JSON response
+          },
+      }).then(response => {
+          if (response.ok) {
+              // Show your success message or popup here
+              alert('Thanks! Your message has been sent successfully.');
+              form.reset(); // Reset the form fields
+          } else {
+              // Show an error message or popup if something went wrong
+              alert('Oops! There was a problem with your submission.');
+          }
+      }).catch(error => {
+          // Handle any other errors
+          console.error('Error:', error);
+          alert('Oops! There was a problem with your submission.');
+      });
+  });
+});
